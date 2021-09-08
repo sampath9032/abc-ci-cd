@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="a42cff86-b4f6-4cb3-9569-b5a6ddbb60e9" >
+		<http:listener-connection host="0.0.0.0" port="${http.port}" />
+	</http:listener-config>
+	<configuration-properties doc:name="Configuration properties" doc:id="a6aff2cb-5242-464b-8bcc-4979038a6dbe" file="dev.yaml" />
+	<flow name="ci-cdFlow" doc:id="17815bbf-8dc4-4cef-9c91-e0991f19629e" >
+		<http:listener doc:name="Listener" doc:id="b517b25a-9954-4dc4-8074-84c704fe3dd4" config-ref="HTTP_Listener_config" path="CD"/>
+		<logger level="INFO" doc:name="Logger" doc:id="39f86ec4-f38f-487b-b6a2-e69fd2a20d31" message="flow started"/>
+		<set-payload value="welcome to CI/CD" doc:name="Set Payload" doc:id="26731eb3-e493-45cd-b135-46a29c923c82" />
+		<logger level="INFO" doc:name="Logger" doc:id="02df1449-60d9-4c3f-9619-1c5ff11af626"/>
+	</flow>
+</mule>
